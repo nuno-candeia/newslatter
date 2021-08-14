@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>God Day, Today</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+  </head>
+
+  <body>
+
+    <div class="col-md-4 col-md-offset-10"> 
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="aler alert-warning">
+            <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form action="" method="POST">
+        
+        {{ form.csrf_token }}
+        
+        <h2 class="form-signin-heading">Login</h2>
+        
+        <label for="inputEmail" class="sr-only">Email</label>
+          {{ form.email(class="form-control", placeholder="Email") }}
+          
+          {% if form.errors.email %}
+          <div class="alert alert-danger" role="alert">
+            {{ form.errors.email }}
+          </div>
+          {% endif %}
+        
+        <label for="inputPassword" class="sr-only">Password</label>
+          {{ form.password(class="form-control", placeholder="Password") }}
+          
+          {% if form.errors.password %}
+          <div class="alert alert-danger" role="alert">
+            {{ form.errors.password }}
+          </div>
+          {% endif %}
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>

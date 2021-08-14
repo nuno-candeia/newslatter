@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>God Day, Today</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+  </head>
+
+  <body>
+
+    <div class="col-md-7 col-md-offset-10"> 
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="aler alert-warning">
+            <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form action="" class="form-group" method="POST">
+        
+        {{ createPost.csrf_token }}
+        
+        <h2 class="form-signin-heading">POST CREATE</h2>
+        
+        <label for="inputEmail" class="sr-only">Title</label>
+        {{ createPost.tittle(class="form-control", placeholder="Title") }}          
+
+        <label for="comment">Comment:</label>
+        {{ createPost.content(class="form-control", placeholder="Content") }}
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+
+    </div>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
